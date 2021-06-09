@@ -1,4 +1,4 @@
-package com.heimdall.entities;
+package com.heimdall.ProjectHeimdallBackend.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,13 +10,13 @@ public class Residence {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     private String zipCode;
-    private long number;
-    private double latitude;
-    private double longitude;
-    private int residentsNo;
+    private String number;
+    private Double latitude;
+    private Double longitude;
+    private Integer residentsNo;
 
     public String getZipCode() {
         return zipCode;
@@ -26,35 +26,35 @@ public class Residence {
         this.zipCode = zipCode;
     }
 
-    public long getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(long number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
-    public int getResidentsNo() {
+    public Integer getResidentsNo() {
         return residentsNo;
     }
 
-    public void setResidentsNo(int residentsNo) {
+    public void setResidentsNo(Integer residentsNo) {
         this.residentsNo = residentsNo;
     }
 }
