@@ -26,25 +26,27 @@ export class MapView extends Component<{},MapViewState>{
             points: new Array<Point>()
         }
 
-        console.log(this.state.points)
+        this.readData("");
     }
 
     greenOptions = { color: 'red', fillColor: 'red', border: false}
 
-    readData(){
-        console.log(this.state.points);
+    readData = (event: any) => {
+        this.setState({points: []});
 
         fetch('http://localhost:8080/api/residence/getAll')
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                data.map((element: Point, index: number) => {                   
-                    console.log(element);
-                    //res.push(element);
+                data.map((element: Point, index: number) => {
+                    
+                    this.setState((state, props) => ({
+                        points: [... state.points.slice(), element]
+                      }));
                 });
             });
 
-        //this.setState({points: res});
+
+        console.log(this.state.points);
     }
     
     render() {
@@ -61,11 +63,11 @@ export class MapView extends Component<{},MapViewState>{
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
                             <LayerGroup>
-                                {this.state.points.map((element, key) => 
+                                {this.state.points.map((element) => 
                                     <Circle
                                     center={[element.latitude, element.longitude]}
                                     pathOptions={this.greenOptions}
-                                    radius={500}
+                                    radius={element.residentsNo * 100}
                                     stroke={false}
                                     />
                                 )}
