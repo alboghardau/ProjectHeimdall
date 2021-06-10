@@ -1,0 +1,13 @@
+.topbar {
+    background-color: #00a7f5;
+    max-height: 100vh;
+    align-items: left;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+.logo{
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 150px;
+}
