@@ -5,6 +5,7 @@ import {Box,Grid, Paper} from "@material-ui/core";
 import { spacing } from '@material-ui/system';
 import HeatLayer from 'rc-leaflet-heat'
 import { Residence } from "../../models/Residence";
+import EventEmitter from "../../utils/EventEmitter";
 
 interface MapViewState{
     points: Residence[];
@@ -21,12 +22,14 @@ export class MapView extends Component<{},MapViewState>{
         this.readData("");
     }
 
+
+
     greenOptions = { color: 'red', fillColor: 'red', border: false}
 
     readData = (event: any) => {
         this.setState({points: []});
 
-        fetch('http://localhost:8080/api/residence/getAll')
+        fetch('http://localhost:8080/api/residences/')
             .then(response => response.json())
             .then(data => {
                 data.map((element: Residence, index: number) => {
@@ -43,6 +46,8 @@ export class MapView extends Component<{},MapViewState>{
         let radius = Math.sqrt(residentsNo) * 100;
         return radius;
     }
+
+    listener = EventEmitter.addListener('SubmitForm', this.readData);
     
     render() {
         return (
