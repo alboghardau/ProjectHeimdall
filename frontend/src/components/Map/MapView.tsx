@@ -38,6 +38,11 @@ export class MapView extends Component<{},MapViewState>{
             });
         console.log(this.state.points);
     }
+
+    calculateRadius(residentsNo: number) : number{
+        let radius = Math.sqrt(residentsNo) * 100;
+        return radius;
+    }
     
     render() {
         return (
@@ -47,17 +52,17 @@ export class MapView extends Component<{},MapViewState>{
             justify="center">
                 <Grid item xs={10}>
                     <Paper elevation={2}>
-                         <MapContainer center={[44.4377, 26.0945]} zoom={12} scrollWheelZoom={false}>
+                         <MapContainer center={[44.4377, 26.0945]} zoom={13} scrollWheelZoom={false}>
                             <TileLayer
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
                             <LayerGroup>
-                                {this.state.points.map((element) => 
+                                {this.state.points.map((point) => 
                                     <Circle
-                                    center={[element.latitude, element.longitude]}
+                                    center={[point.latitude, point.longitude]}
                                     pathOptions={this.greenOptions}
-                                    radius={element.residentsNo * 100}
+                                    radius={this.calculateRadius(point.residentsNo)}
                                     stroke={false}
                                     />
                                 )}
