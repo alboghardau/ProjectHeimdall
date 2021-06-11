@@ -6,16 +6,8 @@ import { spacing } from '@material-ui/system';
 import HeatLayer from 'rc-leaflet-heat'
 import { Residence } from "../../models/Residence";
 
-interface Point {
-    zipCode: string;
-    number: string;
-    latitude: number;
-    longitude: number;
-    residentsNo: number;  
-}
-
 interface MapViewState{
-    points: Point[];
+    points: Residence[];
 }
 
 export class MapView extends Component<{},MapViewState>{
@@ -23,7 +15,7 @@ export class MapView extends Component<{},MapViewState>{
     constructor(props: any) {
         super(props);
         this.state = {
-            points: new Array<Point>()
+            points: new Array<Residence>()
         }
 
         this.readData("");
@@ -37,15 +29,13 @@ export class MapView extends Component<{},MapViewState>{
         fetch('http://localhost:8080/api/residence/getAll')
             .then(response => response.json())
             .then(data => {
-                data.map((element: Point, index: number) => {
+                data.map((element: Residence, index: number) => {
                     
                     this.setState((state, props) => ({
                         points: [... state.points.slice(), element]
                       }));
                 });
             });
-
-
         console.log(this.state.points);
     }
     

@@ -17,7 +17,13 @@ export class ResidenceForm extends Component<{},ResidenceFormState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            residence: new Residence(),
+            residence: {
+                zipCode: "",
+                number: "",
+                latitude: 0,
+                longitude: 0,
+                residentsNo: 1,
+            },
             isFormValid: false,
             zipCodeError: true,
             numberError: true,
