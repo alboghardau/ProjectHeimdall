@@ -1,6 +1,8 @@
 import { Button, TextField } from "@material-ui/core";
 import { Component } from "react";
 import { Residence } from '../../models/Residence';
+import { TopBar } from "../TopBar/TopBar";
+import EventEmitter from "../../utils/EventEmitter";
 
 interface ResidenceFormState{
     residence: Residence,
@@ -17,7 +19,13 @@ export class ResidenceForm extends Component<{},ResidenceFormState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            residence: new Residence(),
+            residence: {
+                zipCode: "",
+                number: "",
+                latitude: 0,
+                longitude: 0,
+                residentsNo: 1,
+            },
             isFormValid: false,
             zipCodeError: true,
             numberError: true,
@@ -89,9 +97,9 @@ export class ResidenceForm extends Component<{},ResidenceFormState> {
     }
 
     handleSubmit = (event: any) => {
-        alert('A form was submitted: ' + JSON.stringify(this.state.residence));
+        //alert('A form was submitted: ' + JSON.stringify(this.state.residence));
     
-        fetch('http://localhost:8080/api/residence/add', {
+        fetch('http://localhost:8080/api/residences/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             // We convert the React state to JSON and send it as the POST body
@@ -102,6 +110,10 @@ export class ResidenceForm extends Component<{},ResidenceFormState> {
           });
     
         event.preventDefault();
+
+        EventEmitter.emit("SubmitForm", {
+
+         });
     }
 
 

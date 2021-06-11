@@ -3,13 +3,10 @@ import './TopBar.css';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
 import logo from "./../../resources/heimdall.png"
 
-
 import {Toolbar} from "@material-ui/core";
 import React from "react";
 import { ResidenceForm } from "../ResidenceForm/ResidenceForm";
-
-
-
+import EventEmitter from "../../utils/EventEmitter";
 
 export function TopBar() {
     const [open, setOpen] = React.useState(false);
@@ -21,6 +18,8 @@ export function TopBar() {
     const handleClose = () => {
       setOpen(false);
     };
+
+    const listener = EventEmitter.addListener('SubmitForm', () => {setOpen(false)});
 
     return (        
             <Toolbar className="topbar">
