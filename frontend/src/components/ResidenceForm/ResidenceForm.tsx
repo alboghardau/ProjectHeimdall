@@ -1,4 +1,4 @@
-import { Button, TextField } from "@material-ui/core";
+import { Button, Grid, TextField } from "@material-ui/core";
 import { Component } from "react";
 import { Residence } from '../../models/Residence';
 import { TopBar } from "../TopBar/TopBar";
@@ -120,40 +120,63 @@ export class ResidenceForm extends Component<{},ResidenceFormState> {
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
-                <TextField 
-                    error={this.state.zipCodeError}
-                    required
-                    value={this.state.residence.zipCode} 
-                    name="zipCode" 
-                    label="Zip Code" 
-                    onChange={this.handleChange} />
-                <TextField 
-                    error={this.state.numberError}
-                    value={this.state.residence.number} 
-                    name="number" 
-                    label="Number" 
-                    onChange={this.handleChange} />
-                <TextField 
-                    error={this.state.latitudeError}
-                    value={this.state.residence.latitude} 
-                    name="latitude" 
-                    label="Latitude" 
-                    onChange={this.handleChange} />
-                <TextField
-                    error={this.state.longitudeError} 
-                    value={this.state.residence.longitude} 
-                    name="longitude" 
-                    label="Longitude" 
-                    onChange={this.handleChange} />
-                <TextField 
-                    error={this.state.residentsError}
-                    value={this.state.residence.residentsNo} 
-                    name="residentsNo" 
-                    label="Residents No." 
-                    onChange={this.handleChange} />
-                <Button 
-                    disabled={!this.state.isFormValid}
-                    type="submit">Submit</Button>
+                <Grid container spacing={3}>
+                    <Grid container item xs={12} spacing={3}>
+                    <TextField 
+                        fullWidth
+                        error={this.state.zipCodeError}
+                        required
+                        value={this.state.residence.zipCode} 
+                        name="zipCode" 
+                        label="Zip Code" 
+                        onChange={this.handleChange} />
+                    </Grid>
+                    <Grid container item xs={12} spacing={3}>
+                    <TextField 
+                        fullWidth
+                        error={this.state.numberError}
+                        value={this.state.residence.number} 
+                        name="number" 
+                        label="Number" 
+                        onChange={this.handleChange} />
+                    </Grid>
+                    <Grid container item xs={12} spacing={3}>
+                    <TextField 
+                        fullWidth
+                        error={this.state.latitudeError}
+                        value={this.state.residence.latitude} 
+                        name="latitude" 
+                        label="Latitude" 
+                        onChange={this.handleChange} />
+                    </Grid>
+                    <Grid container item xs={12} spacing={3}>
+                    <TextField 
+                        fullWidth
+                        error={this.state.longitudeError} 
+                        value={this.state.residence.longitude} 
+                        name="longitude" 
+                        label="Longitude" 
+                        onChange={this.handleChange} />
+                    </Grid>
+                    <Grid container item xs={12} spacing={3}>
+                    <TextField 
+                        fullWidth
+                        error={this.state.residentsError}
+                        value={this.state.residence.residentsNo} 
+                        name="residentsNo" 
+                        label="Residents No." 
+                        onChange={this.handleChange} />
+                    </Grid>
+                    <Grid container item xs={12} spacing={3}>
+                        <Button
+                        fullWidth 
+                        disabled={!this.state.isFormValid}
+                        type="submit">Submit</Button>
+                    </Grid>  
+                </Grid>
+
+
+
           </form>
         );
     }
